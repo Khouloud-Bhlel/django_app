@@ -1,0 +1,12 @@
+{% extends 'magasin/base.html' %}
+
+{% block body %} 
+{% load static %}
+  <h1>Modifier la commande</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a href="{% url 'supprimer_commande' commande.pk %}" class="btn btn-danger">Supprimer</a>
+  </form>
+{% endblock %}

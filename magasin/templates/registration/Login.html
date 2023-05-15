@@ -1,0 +1,36 @@
+{% extends "magasin/base.html" %}
+{% block content %}
+<h2>Se connecter </h2>
+<div>
+<form method="post">
+{% csrf_token %}
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<p class="alert alert-danger">{{ error }}</p>
+{% endfor %}
+{% endif %}
+<table>
+{% for field in form %}
+<tr>
+<td>{{ field.label_tag }}</td>
+<td>{{ field }}</td>
+</tr>
+{% endfor %}
+</table>
+<button type="submit">se connecter</button>
+</form>
+</div>
+<div>
+<small>
+Pas encore inscrit.e?
+<a href="{% url 'register' %}"> S'inscrire </a>
+S'inscrire
+</a>
+<br>
+Mot de passe oublié ?
+<a href="#">
+Renouveler mon mot de passe
+</a>
+</small>
+</div>
+{% endblock %}

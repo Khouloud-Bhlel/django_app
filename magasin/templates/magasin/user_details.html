@@ -1,0 +1,26 @@
+{% extends 'magasin/base.html' %}
+{% block body %} 
+{% load static %}
+  <div class="container mt-5">
+    <h1>Détails personnels de {{ user.username }}</h1>
+
+    <div class="card mt-4">
+      <div class="card-body">
+        <p><strong>Nom d'utilisateur:</strong> {{ user.username }}</p>
+        <p><strong>Adresse email:</strong> {{ user.email }}</p>
+        <p><strong>Date de création du compte:</strong> {{ user.date_joined|date }}</p>
+        {% if user.first_name %}
+        <p><strong>Prénom:</strong> {{ user.first_name }}</p>
+        {% endif %}
+        {% if user.last_name %}
+        <p><strong>Nom:</strong> {{ user.last_name }}</p>
+        {% endif %}
+        {% if user.profile.image %}
+        <img src="{{ user.profile.image.url }}" alt="{{ user.username }}'s profile picture">
+        {% endif %}
+      </div>
+    </div>
+
+  
+  </div>
+{% endblock %}

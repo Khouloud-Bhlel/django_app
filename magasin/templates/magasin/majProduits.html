@@ -1,0 +1,66 @@
+{% extends 'magasin/base.html' %}
+{% block body %} 
+{% load static %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>Manip Produit...</h2>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12"> 
+        <a href="{% url 'ajouterproduit'%}" class="btn btn-success">Ajouter Produit</a>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Libellé</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Type</th>
+            <th>Catégorie</th>
+            <th>Fournisseur</th>
+            <th>Image</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for produit in produits %}
+          <tr>
+            <td>{{ produit.libelle }}</td>
+            <td>{{ produit.description }}</td>
+            <td>{{ produit.prix }} €</td>
+            <td>{{ produit.get_type_display }}</td>
+            <td>{{ produit.categorie }}</td>
+            <td>{{ produit.fournisseur }}</td>
+            <td>
+              {% if produit.img %}
+              <img src="{{ produit.img.url }}" height="50">
+             
+              {% endif %}
+              
+              {% if produit.img.value %}
+              <img src="{{ produit.img.url }}" height="50">
+              {% endif %}
+
+            </td>
+            <td>
+              <div class="btn-group" role="group">
+              <a href="{% url 'modifierproduit' produit.id %}" class="btn btn-warning btn-sm">Modifier</a>
+              <form action="{% url 'supprimerproduit' produit.id %}" method="POST" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+              </form>
+            </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

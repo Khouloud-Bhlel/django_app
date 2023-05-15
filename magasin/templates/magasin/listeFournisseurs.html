@@ -1,0 +1,43 @@
+{% extends 'magasin/base.html' %}
+{% block body %} 
+{% load static %}
+<div class="container">
+  <h1>Liste des fournisseurs</h1>
+  <div>
+  <a href="{% url 'ajouter_fournisseur' %}" class="btn btn-success">Ajouter fournisseur</a>
+  <div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Adresse</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for fournisseur in fournisseurs %}
+        <tr>
+          <td>{{ fournisseur.nom }}</td>
+          <td>{{ fournisseur.adresse }}</td>
+          <td>{{ fournisseur.email }}</td>
+          <td>{{ fournisseur.telephone }}</td>
+          <td>
+            <div class="btn-group" role="group">
+            <a href="{% url 'modifier_fournisseur' fournisseur.id %}" class="btn btn-warning">Modifier</a>
+            <a href="{% url 'supprimer_fournisseur' fournisseur.id %}" class="btn btn-danger">Supprimer</a>
+            </div>
+          </td>
+        </tr>
+      
+      {% empty %}
+      <tr>
+        <td colspan="4">Aucune fournisseur disponible</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

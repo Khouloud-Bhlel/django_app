@@ -1,0 +1,47 @@
+{% extends 'magasin/base.html' %}
+{% block body %} 
+{% load static %}
+  <div class="container mt-5">
+    <h1>Liste des commandes</h1>
+
+    <div class="container mt-3">
+      <a href="{% url 'ajouter_commande' %}" class="btn btn-success">Ajouter commande</a>
+    </div>
+    
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Total</th>
+          <th>Produits</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for commande in commandes %}
+          <tr>
+            <td>{{ commande.dateCde }}</td>
+            <td>{{ commande.totalCde }}</td>
+            <td>
+              <ul>
+                {% for produit in commande.produits.all %}
+                  <li>{{ produit.libelle }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+            <td>
+              <div class="btn-group" role="group">
+                <a href="{% url 'modifier_commande' commande.id %}" class="btn btn-primary">Modifier</a>
+                <a href="{% url 'supprimer_commande' commande.id %}" class="btn btn-danger">Supprimer</a>
+              </div>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4">Aucune commande disponible</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

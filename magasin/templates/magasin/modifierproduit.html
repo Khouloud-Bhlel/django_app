@@ -1,0 +1,18 @@
+{% extends 'magasin/base.html' %}
+{% block body %} 
+{% load static %}
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>Modifier un produit</h2>
+    </div>
+    <div class="col-md-6 mx-auto">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

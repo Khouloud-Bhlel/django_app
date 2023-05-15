@@ -1,0 +1,13 @@
+{% extends 'magasin/base.html' %}
+{% block body %} 
+{% load static %}
+<div class="container">
+  <h1>Modifier le fournisseur "{{ form.instance.nom }}"</h1>
+  <form method="post" action="{% url 'modifier_fournisseur' form.instance.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Modifier</button>
+    <a href="{% url 'listeFournisseurs' %}" class="btn btn-secondary">Annuler</a>
+  </form>
+</div>
+{% endblock %}

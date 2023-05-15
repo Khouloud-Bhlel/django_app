@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>{% block title %}{% endblock %}</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+<link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/base.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+{% block styles %}{% endblock %}
+</head>
+<body><nav class="navbar navbar-dark bg-dark nav-menu navbar" style="background-color: black;">
+  <div class="container d-flex align-items-center">
+    <div class="container-fluid">
+      <nav id="navbar" class="nav-menu navbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-inline-flex">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">E-Commerce</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accueil' %}">Administration</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'listecommandes' %}">Commande</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'listeFournisseurs' %}">Fournisseur</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'majProduits' %}">Produit</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vitrine' %}">Vitrine</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'user_details' %}">{{ user.username }},</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'loginout' %}">Déconnexion</a>
+        </li>
+        {% else %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'login' %}">Connexion</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'register' %}">Inscription</a>
+        </li>
+        {% endif %}
+      </ul>
+     </nav>
+    </div>
+  </nav>
+  </div>
+<!-- .navbar -->
+
+   
+    
+{% block hero %}
+
+
+{% endblock hero %}
+<main id="main">
+  {% block body %}
+  
+  {% endblock body %}
+
+  </main>
+
+
+</body>
+</html>

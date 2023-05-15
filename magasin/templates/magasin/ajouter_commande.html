@@ -1,0 +1,15 @@
+{% extends 'magasin/base.html' %}
+{% block body %} 
+{% load static %}
+  <div class="container mt-5">
+    <h1>Ajouter une commande</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+    </form>
+
+  </div>
+{% endblock %}

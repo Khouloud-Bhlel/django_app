@@ -1,0 +1,45 @@
+{% extends 'magasin/base.html' %}
+{% block body %} 
+{% load static %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2>Modifier le profil</h2>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Nom d'utilisateur</label>
+          <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Adresse email</label>
+          <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+        </div>
+        <div class="form-group">
+          <label for="first_name">Prénom</label>
+          <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name }}" required>
+        </div>
+        <div class="form-group">
+          <label for="last_name">Nom de famille</label>
+          <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name }}" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe (laissez vide pour conserver l'actuel)</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Confirmez le mot de passe</label>
+          <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+        </div>
+        {{ profile_form.as_p }}
+        <p>
+          <label for="id_profile_picture">Photo de profil:</label> 
+          <input type="file" name="profile_picture" id="id_profile_picture">
+        </p>
+        
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
